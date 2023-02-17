@@ -11,6 +11,7 @@ class Categorie {
 }
 // Je crée une variable avec le lien général de l'api;
 const urlBase = "http://localhost:5678/api";
+const galleryHtml = document.querySelector("#gallery");
 
 // J'insère tout mon code dans une instruction try catch pour regrouper toutes les instructions à exécuter et définir une réponse à afficher si l'une des instruction génère une exception;
 try {
@@ -28,13 +29,16 @@ try {
   // Je parcours le tableau des works, je crée les balises html et j'affiche les éléments du tableau;
   // Je crée une fonction globale genererWorks pour la mise à jour de la page en fonction des filtres;
   function genererWorks(jsonWorks) {
+    // Je régénère la page avec un body vide pour ensuite afficher correctement les filtres;
+    galleryHtml.innerHTML = "";
+
     for (let jsonWork of jsonWorks) {
       let work = new Work(jsonWork);
 
-      document.querySelector("#gallery").innerHTML += `<figure>
-                                                            <img src=${work.imageUrl}>
-                                                            <figcaption>${work.title}</figcaption>
-                                                        </figure>`;
+      galleryHtml.innerHTML += `<figure>
+                                    <img src=${work.imageUrl}>
+                                    <figcaption>${work.title}</figcaption>
+                                </figure>`;
     }
   }
   genererWorks(jsonWorks);
@@ -48,7 +52,6 @@ try {
 
   // Je crée un évenement pour que tous les élements du tableau se régénèrent au click;
   boutonTous.addEventListener("click", function () {
-    document.querySelector("#gallery").innerHTML = "";
     genererWorks(jsonWorks);
   });
 
@@ -74,8 +77,6 @@ try {
         }
       });
 
-      // Je régénère la page avec un body vide pour ensuite afficher correctement les filtres;
-      document.querySelector("#gallery").innerHTML = "";
       genererWorks(categoriesFiltrees);
     });
   }

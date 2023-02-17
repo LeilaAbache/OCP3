@@ -1,0 +1,55 @@
+// -------------------------------------
+// Je fais appel à une API de validation pour que les champs soient correctement renseignés
+// -------------------------------------
+
+// Je pointe le submit auquel je crée un évenement au click
+document
+  .querySelector('.form input[type="submit"]')
+  .addEventListener("click", function () {
+    var valid = true;
+    // Je parcours tous les inputs
+    for (let input of document.querySelectorAll(".form input")) {
+      // Je crée une instruction if pour contrôler la validité de tous les champs
+      // équivaut à valid = valid && input.reportValidity();
+      valid &= input.reportValidity();
+      // Si champs non valide, la validaton s'arrête et ne poursuit pas sur les autres champs
+      if (!valid) {
+        break;
+      }
+    }
+  });
+
+// -------------------------------------
+// Je fais un appel fetch pour récupérer le userId et token d'authentification
+// -------------------------------------
+
+const urlBase = "http://localhost:5678/api";
+const urlLogin = urlBase + "/users/login";
+
+// Je pointe ma classe html .form et ajoute un événement sur le submit
+document
+  .querySelector(".form")
+  .addEventListener("submit", async function (event) {
+    // J'annule le comportement par défaut du navigateur (chargement d'une nouvelle page à la validation du formulaire)
+    event.preventDefault();
+    // J'envoie les données de connexion et demande à récupérer une reponse via fetch
+    const response = await fetch(urlLogin, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: document.getElementById("email").value,
+        password: document.getElementById("mot-de-passe").value,
+      }),
+    });
+    const dataResponse = await response.json();
+
+    // Je crée une condition pour rediriger l'utilisateur sur page home en cas de connexion réussie sinon message d'erreur en alerte
+    if ("error" in dataResponse) {
+      alert("Email ou mot de passe incorrect");
+    } else {
+      function RedirectionJavascript() {
+        document.location.href = "index.html";
+      }
+      RedirectionJavascript();
+    }
+  });
