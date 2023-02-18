@@ -105,6 +105,7 @@ li:hover a {
 #introduction {
 	display: flex;
 	align-items: center;
+	margin-bottom: 5px;
 }
 #introduction figure {
 	flex: 1
@@ -124,6 +125,9 @@ li:hover a {
 
 #introduction p {
 	margin-bottom: 0.5em;
+}
+#portfolio{
+	margin-top: 100px;
 }
 #portfolio h2 {
 	text-align: center;
@@ -213,6 +217,49 @@ footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
+}
+
+.mode-edition{
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 20px;
+	background-color: black;
+	padding: 10px;
+}
+
+.mode-edition i{
+	color: white;
+	padding-top: 6px;
+}
+.mode-edition p{
+	color: white;
+	padding-top: 6px;
+}
+.mode-edition button{
+	border-style: none;
+	background-color: white;
+	border: 1px solid white;
+	border-radius: 25px;
+	padding: 8px 13px;
+	font-family: 'Syne';
+	font-size: 12px;
+
+}
+.modifier-photo{
+	padding-left: 60px;
+}
+.titre-projets{
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 30px;
+}
+.modifier-projets{
+	padding-top: 10px;
+}
+#log{
+	display:none;
 }
 
 

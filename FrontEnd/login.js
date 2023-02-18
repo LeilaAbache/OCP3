@@ -73,6 +73,8 @@ document
   });
 
 const boutonLogout = document.querySelector(".log");
-boutonLogout.addEventListener("click", function () {
+boutonLogout.addEventListener("click", function (event) {
+  event.preventDefault();
   window.localStorage.removeItem("dataResponse");
+  document.location.href = "index.html";
 });

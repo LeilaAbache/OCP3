@@ -8,12 +8,19 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
-		rel="stylesheet">
+	rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 
 <body>
+
+	<div class="mode-edition" id="log">
+		<i class="fa-solid fa-pen-to-square"></i>
+		<p>Mode édition</p>
+		<button><a href="">Publier les changements</a></button>	
+	</div>
+
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -21,15 +28,16 @@
 				<li><a href="#portfolio">Projets</a></li>
 				<li><a href="#contact">Contact</a></li>
 				<li><a href="login.html">Login</a></li>
-				<li><a href="login.html" class="log">Logout</a></li>
+				<li id="log"><a href="login.html">Logout</a></li>
 				<li><a href="#"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
 			</ul>
 		</nav>
 	</header>
+
 	<main>
 		<section id="introduction">
 			<figure>
-				<img src="./assets/images/sophie-bluel.png" alt="">
+				<img src="./assets/images/sophie-bluel.png" alt="">	
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -42,39 +50,51 @@
 					décorateur(trice)</p>
 			</article>
 		</section>
+
+		<div class="modifier-photo" id="log">
+			<i class="fa-solid fa-pen-to-square"></i>
+			<a href="">Modifier</a>
+		</div>
+
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
-			<div id="filtre-categories" class="filtres">
-				<!--Ajout des balises button en JS-->
+			<div class="titre-projets">
+				<h2>Mes Projets</h2>
+				<div class="modifier-projets" id="log">
+					<i class="fa-solid fa-pen-to-square"></i>
+					<a href="">Modifier</a>
+				</div>
 			</div>
-			<div id="gallery" class="gallery">
-				<!--Ajout des balises figures en JS-->
-			</div>
+				<div id="filtre-categories" class="filtres">
+							<!--Ajout des balises button en JS-->
+				</div>
+				<div id="gallery" class="gallery">
+							<!--Ajout des balises figures en JS-->
+				</div>
 		</section>
 		<section id="contact">
-			<h2>Contact</h2>
-			<p>Vous avez un projet ? Discutons-en !</p>
-			<form action="#" method="post">
-				<label for="name">Nom</label>
-				<input type="text" name="name" id="name">
-				<label for="email">Email</label>
-				<input type="email" name="email" id="email">
-				<label for="message">Message</label>
-				<textarea name="message" id="message" cols="30" rows="10"></textarea>
-				<input type="submit" value="Envoyer">
-			</form>
+				<h2>Contact</h2>
+				<p>Vous avez un projet ? Discutons-en !</p>
+				<form action="#" method="post">
+					<label for="name">Nom</label>
+					<input type="text" name="name" id="name">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email">
+					<label for="message">Message</label>
+					<textarea name="message" id="message" cols="30" rows="10"></textarea>
+					<input type="submit" value="Envoyer">
+				</form>
 		</section>
 	</main>
-
+				
 	<footer>
 		<nav>
 			<ul>
 				<li>Mentions Légales</li>
-			</ul>
+				</ul>
 		</nav>
 	</footer>
-
+	<script src="https://kit.fontawesome.com/5806bac3d3.js" crossorigin="anonymous"></script>
 	<script type="module" src="index.js"></script>
 </body>
-
+			
 </html>
