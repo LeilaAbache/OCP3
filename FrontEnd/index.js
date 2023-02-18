@@ -80,6 +80,11 @@ try {
       genererWorks(categoriesFiltrees);
     });
   }
+
+  const boutonLogout = document.querySelector(".log");
+  boutonLogout.addEventListener("click", function () {
+    window.localStorage.removeItem("dataResponse");
+  });
 } catch (err) {
   console.log("Une erreur est survenue", err);
 }
