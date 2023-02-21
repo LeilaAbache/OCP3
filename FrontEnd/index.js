@@ -9,6 +9,7 @@ class Categorie {
     jsonCategorie && Object.assign(this, jsonCategorie);
   }
 }
+
 // Je crée une variable avec le lien général de l'api;
 const urlBase = "http://localhost:5678/api";
 const galleryHtml = document.querySelector("#gallery");
@@ -36,9 +37,9 @@ try {
       let work = new Work(jsonWork);
 
       galleryHtml.innerHTML += `<figure>
-                                    <img src=${work.imageUrl}>
-                                    <figcaption>${work.title}</figcaption>
-                                </figure>`;
+      <img src=${work.imageUrl}>
+      <figcaption>${work.title}</figcaption>
+      </figure>`;
     }
   }
   genererWorks(jsonWorks);
@@ -80,11 +81,41 @@ try {
       genererWorks(categoriesFiltrees);
     });
   }
-
-  const boutonLogout = document.querySelector(".log");
-  boutonLogout.addEventListener("click", function () {
-    window.localStorage.removeItem("dataResponse");
-  });
 } catch (err) {
   console.log("Une erreur est survenue", err);
+}
+
+// TODO : a mettre dans un autre fichier js
+const boutonLogout = document.querySelector(".logout");
+boutonLogout.addEventListener("click", function (event) {
+  event.preventDefault();
+  window.localStorage.removeItem("dataResponse");
+  document.location.href = "index.html";
+});
+
+let dataResponse = window.localStorage.getItem("dataResponse");
+dataResponse = JSON.parse(dataResponse);
+
+let homeEditLogin = document.getElementsByClassName("log");
+
+for (let element of homeEditLogin) {
+  if (dataResponse !== null && "token" in dataResponse) {
+    element.style.display = "flex";
+    console.log("FLEX");
+  } else {
+    element.style.display = "none";
+    console.log("NONE");
+  }
+}
+
+let homeEditLogout = document.getElementsByClassName("login");
+
+for (let element of homeEditLogout) {
+  if (dataResponse !== null && "token" in dataResponse) {
+    element.style.display = "none";
+    console.log("none");
+  } else {
+    element.style.display = "flex";
+    console.log("flex");
+  }
 }

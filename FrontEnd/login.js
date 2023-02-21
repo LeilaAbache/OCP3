@@ -49,20 +49,16 @@ document
           password: document.getElementById("mot-de-passe").value,
         }),
       });
-      const dataResponse = await response.json();
+      dataResponse = await response.json();
 
       // Je crée une condition pour rediriger l'utilisateur sur page home en cas de connexion réussie sinon message d'erreur en alerte
       if ("token" in dataResponse) {
-        function RedirectionJavascript() {
-          document.location.href = "index.html";
+        document.location.href = "index.html";
 
-          //Je convertis dataResponse en JSON avant de les enregistrer dans localStorage
-          const valeurData = JSON.stringify(dataResponse);
-          // Stockage des informations dans le localStorage
-          window.localStorage.setItem("dataResponse", valeurData);
-        }
-
-        RedirectionJavascript();
+        //Je convertis dataResponse en JSON avant de les enregistrer dans localStorage
+        const valeurData = JSON.stringify(dataResponse);
+        // Stockage des informations dans le localStorage
+        window.localStorage.setItem("dataResponse", valeurData);
       } else {
         alert("Email ou mot de passe incorrect");
       }
@@ -72,9 +68,9 @@ document
     }
   });
 
-const boutonLogout = document.querySelector(".log");
-boutonLogout.addEventListener("click", function (event) {
-  event.preventDefault();
-  window.localStorage.removeItem("dataResponse");
+let dataResponse = window.localStorage.getItem("dataResponse");
+dataResponse = JSON.parse(dataResponse);
+
+if (dataResponse !== null && "token" in dataResponse) {
   document.location.href = "index.html";
-});
+}

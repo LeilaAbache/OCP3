@@ -48,11 +48,15 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+
+#main {
+	max-width: 1140px;
+	margin:auto;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;
@@ -226,15 +230,16 @@ footer nav ul {
 	gap: 20px;
 	background-color: black;
 	padding: 10px;
+	font-family: 'Work Sans';
 }
 
 .mode-edition i{
 	color: white;
-	padding-top: 6px;
+	padding-top: 8px;
 }
 .mode-edition p{
 	color: white;
-	padding-top: 6px;
+	padding-top: 8px;
 }
 .mode-edition button{
 	border-style: none;
@@ -242,10 +247,10 @@ footer nav ul {
 	border: 1px solid white;
 	border-radius: 25px;
 	padding: 8px 13px;
-	font-family: 'Syne';
+	font-family: 'Work Sans';
 	font-size: 12px;
-
 }
+
 .modifier-photo{
 	padding-left: 60px;
 }
@@ -255,10 +260,20 @@ footer nav ul {
 	justify-content: center;
 	gap: 30px;
 }
-.modifier-projets{
+.modifier-projets i{
 	padding-top: 10px;
 }
-#log{
+.modifier-projets button{
+	padding-bottom: 22px;
+}
+
+.modifier-photo button, .modifier-projets button{
+	border-style: none;
+	font-family: 'Work Sans';
+	background-color: white;
+}
+
+.log{
 	display:none;
 }
 

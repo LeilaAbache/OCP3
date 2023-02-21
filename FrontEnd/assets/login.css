@@ -1,3 +1,7 @@
+body{
+	max-width: 1140px;
+	margin:auto;
+}
 #login {
 	width: 50%;
 margin: auto;
@@ -26,4 +30,6 @@ margin: auto;
 #login label {
 	margin: 2em 0 1em 0;
 }
-
+.login{
+	font-weight:900;
+}
