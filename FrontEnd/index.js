@@ -1,3 +1,4 @@
+import { getWorks } from "./utils.js";
 class Work {
   constructor(jsonWork) {
     jsonWork && Object.assign(this, jsonWork);
@@ -13,7 +14,6 @@ class Categorie {
 // Je crée une variable avec le lien général de l'api;
 const urlBase = "http://localhost:5678/api";
 const galleryHtml = document.querySelector("#gallery");
-
 // J'insère tout mon code dans une instruction try catch pour regrouper toutes les instructions à exécuter et définir une réponse à afficher si l'une des instruction génère une exception;
 try {
   // Je récupère le tableau categories et le tableau works sur l'API grâce à fetch
@@ -21,7 +21,8 @@ try {
   //   console.log("reponse", res);
   //   const categories = await res.json();
   //   console.log(jsonCategories);
-  const jsonWorks = await (await fetch(`${urlBase}/works`)).json();
+  //const jsonWorks = await (await fetch(`${urlBase}/works`)).json();
+  const jsonWorks = await getWorks();
   console.log(jsonWorks);
 
   const jsonCategories = await (await fetch(`${urlBase}/categories`)).json();
@@ -85,7 +86,9 @@ try {
   console.log("Une erreur est survenue", err);
 }
 
-// TODO : a mettre dans un autre fichier js
+// TODO : a mettre dans un autre fichier js (export import sur tous les fichiers)
+
+// Je crée un évenement pour effacer les données du localStorage à la deconnexion et redirection vers index
 const boutonLogout = document.querySelector(".logout");
 boutonLogout.addEventListener("click", function (event) {
   event.preventDefault();
@@ -93,9 +96,12 @@ boutonLogout.addEventListener("click", function (event) {
   document.location.href = "index.html";
 });
 
+//Je récupère les data je les parse pour changer la config html de l'index si connecté ou non
+
 let dataResponse = window.localStorage.getItem("dataResponse");
 dataResponse = JSON.parse(dataResponse);
 
+// faire apparaitre les éléments si logged
 let homeEditLogin = document.getElementsByClassName("log");
 
 for (let element of homeEditLogin) {
@@ -108,6 +114,7 @@ for (let element of homeEditLogin) {
   }
 }
 
+// faire disparaitre le login si logged
 let homeEditLogout = document.getElementsByClassName("login");
 
 for (let element of homeEditLogout) {

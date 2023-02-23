@@ -68,9 +68,11 @@ document
     }
   });
 
+// je recupère les data et je les parse
 let dataResponse = window.localStorage.getItem("dataResponse");
 dataResponse = JSON.parse(dataResponse);
 
+// pour rediriger automatiquement vers la page index si logged
 if (dataResponse !== null && "token" in dataResponse) {
   document.location.href = "index.html";
 }

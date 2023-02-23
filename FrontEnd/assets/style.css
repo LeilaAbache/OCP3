@@ -237,11 +237,14 @@ footer nav ul {
 	color: white;
 	padding-top: 8px;
 }
-.mode-edition p{
+.mode-edition-b1{
 	color: white;
-	padding-top: 8px;
+	border: none;
+	background-color: black;
+	font-family: 'Work Sans';
+	padding: 8px;
 }
-.mode-edition button{
+.mode-edition-b2{
 	border-style: none;
 	background-color: white;
 	border: 1px solid white;
@@ -250,6 +253,7 @@ footer nav ul {
 	font-family: 'Work Sans';
 	font-size: 12px;
 }
+
 
 .modifier-photo{
 	padding-left: 60px;
@@ -276,5 +280,80 @@ footer nav ul {
 .log{
 	display:none;
 }
+
+.modal{
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.3);
+}
+.modal-wrapper{
+	width: 500px;
+	height: 630px;
+	max-width: clac(100vw - 20px);
+	max-height: clac(100vh - 20px);
+	background-color: white;
+	overflow: auto;
+	border-radius: 5px;
+}
+.gallery-modal {
+	/*width: 100%;*/
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+	border-bottom: grey solid 1px;
+	margin: 30px;
+}
+
+.gallery-modal img {
+	width: 100%;
+}
+aside h3{
+	text-align: center;
+	font-size: 25px;
+}
+
+#x{
+	border: none;
+	background-color: white;
+	font-size: 20px;
+}
+
+.btn-x{
+	text-align:end;
+	padding: 20px;
+}
+.btn-ajout{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+	border: none;
+}
+.btn-suppr{
+	border:none;
+	background-color: white;
+	color: rgb(247, 79, 79);
+	font-family: 'Syne';
+}
+.btn-modif-modal{
+	display: flex;
+	flex-direction: column;
+}
+
+*:focus {
+	box-shadow: 0 0 10px rgb(99, 99, 222);
+}
+
 
 

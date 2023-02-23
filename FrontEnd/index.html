@@ -16,9 +16,25 @@
 <body>
 	<div class="mode-edition log">
 		<i class="fa-solid fa-pen-to-square"></i>
-		<p>Mode édition</p>
-		<button><a href="">Publier les changements</a></button>	
+		<a href="#modal1" class="mode-edition-b1">Mode édition</a>
+		<button class="mode-edition-b2">Publier les changements</button>	
 	</div>
+<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-lebelledby="titlemodal" style="display:none;">
+	<div class="modal-wrapper js-modal-stop">
+		<div class="btn-x">
+		<button class="js-modal-close" id="x"><i class="fa-solid fa-xmark"></i></button>
+		</div>
+		<h3 id="titlemodal">Galerie Photos</h3>
+		<div class="gallery-modal">
+			<!---Ajout des balises figures en JS-->
+		</div>
+		<div class="btn-modif-modal">
+			<button class="btn-ajout">Ajouter une photo</button>
+			<button class="btn-suppr">Supprimer la galerie</button>
+		</div>
+	</div>
+</aside>
+
 
 	<div id="main">
 		<header>
@@ -61,7 +77,7 @@
 					<h2>Mes Projets</h2>
 					<div class="modifier-projets log">
 						<i class="fa-solid fa-pen-to-square"></i>
-						<button>Modifier</button>
+						<a href="#modal1" class="js-modal">Modifier</a>
 					</div>
 				</div>
 					<div id="filtre-categories" class="filtres">
@@ -96,7 +112,9 @@
 	</div>
 
 	<script src="https://kit.fontawesome.com/5806bac3d3.js" crossorigin="anonymous"></script>
+	
 	<script type="module" src="index.js"></script>
+	<script src="modal.js"></script>
 </body>
 			
 </html>
