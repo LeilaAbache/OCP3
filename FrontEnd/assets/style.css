@@ -135,7 +135,6 @@ li:hover a {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 .filtres {
 	display: flex;
@@ -237,7 +236,7 @@ footer nav ul {
 	color: white;
 	padding-top: 8px;
 }
-.mode-edition-b1{
+.mode-edition-p{
 	color: white;
 	border: none;
 	background-color: black;
@@ -263,15 +262,14 @@ footer nav ul {
 	flex-direction: row;
 	justify-content: center;
 	gap: 30px;
+	margin-bottom: 30px;
 }
 .modifier-projets i{
 	padding-top: 10px;
 }
-.modifier-projets button{
-	padding-bottom: 22px;
-}
+	
 
-.modifier-photo button, .modifier-projets button{
+.modifier-photo button{
 	border-style: none;
 	font-family: 'Work Sans';
 	background-color: white;
@@ -281,6 +279,10 @@ footer nav ul {
 	display:none;
 }
 
+.open-modal{
+	padding-top: 10px;
+	padding-left: 5px;
+}
 .modal{
 	position: fixed;
 	display: flex;
@@ -293,8 +295,9 @@ footer nav ul {
 	background: rgba(0, 0, 0, 0.3);
 }
 .modal-wrapper{
+	padding: 40px 80px;
 	width: 500px;
-	height: 630px;
+	height: 600px;
 	max-width: clac(100vw - 20px);
 	max-height: clac(100vh - 20px);
 	background-color: white;
@@ -302,13 +305,12 @@ footer nav ul {
 	border-radius: 5px;
 }
 .gallery-modal {
-	/*width: 100%;*/
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-	border-bottom: grey solid 1px;
-	margin: 30px;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	justify-content:space-around;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	border-bottom: rgb(186, 183, 183) solid 1px;
 }
 
 .gallery-modal img {
@@ -319,17 +321,16 @@ aside h3{
 	font-size: 25px;
 }
 
-#x{
+.js-modal-close {
 	border: none;
 	background-color: white;
 	font-size: 20px;
 }
 
-.btn-x{
+.btn-x {
 	text-align:end;
-	padding: 20px;
 }
-.btn-ajout{
+.btn-ajout {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -340,19 +341,29 @@ aside h3{
 	border-radius: 60px ;
 	border: none;
 }
-.btn-suppr{
+.btn-suppr {
 	border:none;
 	background-color: white;
 	color: rgb(247, 79, 79);
 	font-family: 'Syne';
 }
-.btn-modif-modal{
+.btn-modif-modal {
 	display: flex;
 	flex-direction: column;
 }
 
 *:focus {
-	box-shadow: 0 0 10px rgb(99, 99, 222);
+	box-shadow: 0 0 10px rgb(129, 129, 170);
+}
+
+.fa-trash-can {
+	position: relative;
+    left: 78%;
+    top: 13%;
+    color: white;
+    background-color: black;
+    padding: 3px;
+    font-size: 0.8em;
 }
 
 
