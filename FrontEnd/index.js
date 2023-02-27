@@ -281,3 +281,17 @@ window.addEventListener("keydown", function (e) {
     focusInModal(e);
   }
 });
+
+const imageForm = document.querySelector("#image-form");
+var uploadedImage = "";
+
+imageForm.addEventListener("change", function () {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    uploadedImage = reader.result;
+    document.querySelector(
+      "#display-image"
+    ).style.backgroundImage = `url(${uploadedImage})`;
+  });
+  reader.readAsDataURL(this.files[0]);
+});

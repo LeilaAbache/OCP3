@@ -47,11 +47,24 @@
 			</div>
 			
 			<h3 id="titlemodal2">Ajout photo</h3>
-			<div class="">
-				<!--Ajout en html cadre photo-->
-			</div>
-			<form>
-				<!--Ajout formulaire-->
+			<form class="modal-form" method="post" action="#">
+				<div id="display-image">
+					<i class="fa-sharp fa-solid fa-image"></i>
+					<input type="file" name="image-form" id="image-form" alt="Ajouter photo" accept="image/jpg, image/png">
+					<label for="image-form">+ Ajout Photo</label>
+					<p>jpeg, png : 4mo max</p>
+				</div>
+				<div class="text-form">
+					<label for="titre-form">Titre</label><br>
+					<input type="text" name="titre-form" id="titre-form"><br>
+					<label for="categorie-form">Catégorie</label><br>
+					<select name="categorie-form" id="categorie-form">
+						<option value="objets">Objets</option>
+						<option value="appartements">Appartements</option>
+						<option value="hotels-restaurants">Hotels & Restaurants</option>
+					</select>
+				</div>
+				<input type="submit" value="Valider">
 			</form>
 		</div>
 	</div>
