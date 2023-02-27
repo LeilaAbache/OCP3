@@ -69,7 +69,6 @@ boutonTous.addEventListener("click", function () {
 // je crée une boucle qui parcourt le tableau des catégories;
 for (let i = 0; i < jsonCategories.length; i++) {
   const elFiltreCategories = document.getElementById("filtre-categories");
-  console.log(elFiltreCategories);
 
   const categorie = jsonCategories[i];
 
@@ -113,10 +112,8 @@ let homeEditLogin = document.getElementsByClassName("log");
 for (let element of homeEditLogin) {
   if (dataResponse !== null && "token" in dataResponse) {
     element.style.display = "flex";
-    console.log("FLEX");
   } else {
     element.style.display = "none";
-    console.log("NONE");
   }
 }
 
@@ -126,10 +123,8 @@ let homeEditLogout = document.getElementsByClassName("login");
 for (let element of homeEditLogout) {
   if (dataResponse !== null && "token" in dataResponse) {
     element.style.display = "none";
-    console.log("none");
   } else {
     element.style.display = "flex";
-    console.log("flex");
   }
 }
 
@@ -292,6 +287,7 @@ imageForm.addEventListener("change", function () {
     document.querySelector(
       "#display-image"
     ).style.backgroundImage = `url(${uploadedImage})`;
+    document.querySelector(".display-image-none").style.display = "none";
   });
   reader.readAsDataURL(this.files[0]);
 });
