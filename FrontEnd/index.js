@@ -27,15 +27,17 @@ const galleryHtml = document.querySelector("#gallery");
 
 // J'insère tout mon code dans une instruction try catch pour regrouper toutes les instructions à exécuter et définir une réponse à afficher si l'une des instruction génère une exception;
 //try {
+
 // Je récupère le tableau categories et le tableau works sur l'API grâce à fetch
-//   const res = await fetch(`${urlBase}/categories`);
-//   console.log("reponse", res);
-//   const categories = await res.json();
-//   console.log(jsonCategories);
+
 //const jsonWorks = await (await fetch(`${urlBase}/works`)).json();
 jsonWorks = await getWorks();
 
 const jsonCategories = await (await fetch(`${urlBase}/categories`)).json();
+//   const res = await fetch(`${urlBase}/categories`);
+//   console.log("reponse", res);
+//   const categories = await res.json();
+//   console.log(jsonCategories);
 
 // Je parcours le tableau des works, je crée les balises html et j'affiche les éléments du tableau;
 // Je crée une fonction globale genererWorks pour la mise à jour de la page en fonction des filtres;
@@ -57,10 +59,8 @@ genererWorks(jsonWorks);
 // Je crée un bouton pour afficher tous les éléments du tableau au click;
 const boutonTous = document.createElement("button");
 boutonTous.innerText = "Tous";
-
 // Je rattache le bouton à son parent HTML;
 document.getElementById("filtre-categories").appendChild(boutonTous);
-
 // Je crée un évenement pour que tous les élements du tableau se régénèrent au click;
 boutonTous.addEventListener("click", function () {
   genererWorks(jsonWorks);
@@ -75,7 +75,6 @@ for (let i = 0; i < jsonCategories.length; i++) {
   // Je crée les boutons filtre en fonction de leur nom;
   const boutonFiltre = document.createElement("button");
   boutonFiltre.innerText = categorie.name;
-
   // Je rattache les boutons filtre à leur parent HTML;
   elFiltreCategories.appendChild(boutonFiltre);
 
@@ -90,6 +89,7 @@ for (let i = 0; i < jsonCategories.length; i++) {
     genererWorks(categoriesFiltrees);
   });
 }
+
 //} catch (err) {
 //console.log("Une erreur est survenue", err);
 //}
@@ -106,6 +106,7 @@ boutonLogout.addEventListener("click", function (event) {
 let dataResponse = window.localStorage.getItem("dataResponse");
 dataResponse = JSON.parse(dataResponse);
 
+//--------------------Apparition du mode edition ------------------//
 // faire apparaitre les éléments cachés si logged
 let homeEditLogin = document.getElementsByClassName("log");
 
@@ -128,38 +129,55 @@ for (let element of homeEditLogout) {
   }
 }
 
-//------------ Création de la modale -------------//
+//----------- API validation du formulaire modale ------------//
+// Je pointe le submit auquel je crée un évenement au click
+
+/*document
+  .querySelector('.modal-form input[type="submit"]')
+  .addEventListener("click", function () {
+    var valid = true;
+    // Je parcours tous les inputs
+    for (let input of document.querySelectorAll(".modal-form input")) {
+      // Je crée une instruction if pour contrôler la validité de tous les champs
+      // équivaut à valid = valid && input.reportValidity();
+      valid &= input.reportValidity();
+      // Si champs non valide, la validaton s'arrête et ne poursuit pas sur les autres champs
+      if (!valid) {
+        messageErrFormModal.style.display = "block";
+        break;
+      }
+    }
+  });*/
+
+//----------------- Création de la modale -------------//
 
 let modal = document.getElementById("modal");
 let galleryModal = document.querySelector("#gallery-modal");
+
 //variables concernant le focus
-const focusableSelector = "button, a, input";
-let focusables = [];
-let previouslyFocusedElement = null;
+//const focusableSelector = "button, a, input";
+//let focusables = [];
+//let previouslyFocusedElement = null;
+
+// La modale est fermée par défaut
 let isModalOpen = false;
 
-// Je crée une fonction pour switcher entre la v1 et la v2
+//---------------- switch modale v1 v2 v3 --------------//
+// Je crée une fonction pour switcher entre la v1, la v2 ou la v3
 function switchModal(id) {
   // TODO: aria
-  // les deux v sont en "none" par défaut
+  // les trois v sont en "none" par défaut
   document.getElementById("modal-v1").style.display = "none";
   document.getElementById("modal-v2").style.display = "none";
+  document.getElementById("modal-v3").style.display = "none";
   // je ferai appel à la fonction pour les rendre "block"
   document.getElementById(id).style.display = "block";
 }
 
-// Ouverture de la modale
-const openModal = /*async*/ function (e) {
+//---------------- Ouverture Modale -------------------//
+
+const openModal = function (e) {
   e.preventDefault();
-
-  focusables = Array.from(modal.querySelectorAll(focusableSelector));
-  previouslyFocusedElement = document.querySelector(":focus");
-  modal.style.display = null;
-  focusables[0].focus();
-
-  modal.removeAttribute("aria-hidden");
-  modal.setAttribute("aria-modal", "true");
-
   //Je régénère la modale avec une gallery vide pour afficher les éléments mis à jour
   galleryModal.innerHTML = "";
   //Je parcours le tableau des works pour intégrer chaque work dans les éléments html créés en js
@@ -173,11 +191,22 @@ const openModal = /*async*/ function (e) {
      </figure>`;
   }
 
+  //focusables = Array.from(modal.querySelectorAll(focusableSelector));
+  //previouslyFocusedElement = document.querySelector(":focus");
+
+  // J'annule le display:none pour faire apparaitre la modale
+  modal.style.display = null;
+
+  //focusables[0].focus();
+
+  //modal.removeAttribute("aria-hidden");
+  //modal.setAttribute("aria-modal", "true");
+
   //Supprimer un work depuis la modale
   document.querySelectorAll(".delete-work").forEach(function (trash) {
     trash.addEventListener("click", function (e) {
       e.preventDefault();
-      // // Recup ID
+      // Recup ID
       let workId = this.dataset.id;
 
       // Appel API delete avec l'ID
@@ -201,17 +230,20 @@ const openModal = /*async*/ function (e) {
   isModalOpen = true;
 };
 
-// Fermeture de la modale
+//-------------- Fermeture de la modale ----------------//
+
 const closeModal = function (e) {
-  if (previouslyFocusedElement !== null) previouslyFocusedElement.focus();
+  //if (previouslyFocusedElement !== null) previouslyFocusedElement.focus();
   if (e) {
     e.preventDefault();
   }
-
+  //Je remets la modale en display:none
   modal.style.display = "none";
 
-  modal.setAttribute("aria-hidden", "true");
-  modal.removeAttribute("aria-modal");
+  removePhoto();
+
+  //modal.setAttribute("aria-hidden", "true");
+  //modal.removeAttribute("aria-modal");
 
   isModalOpen = false;
 };
@@ -223,9 +255,10 @@ const stopPropagation = function (e) {
 };
 
 // Une fois la modale ouverte, j'enferme le focus à l'intérieur de la modale
-const focusInModal = function (e) {
+/*const focusInModal = function (e) {
   e.preventDefault();
   let index = focusables.findIndex((f) => f === modal.querySelector(":focus"));
+  console.log(focusables, index);
   if (e.shiftKey) {
     index--;
   } else {
@@ -237,10 +270,11 @@ const focusInModal = function (e) {
   if (index < 0) {
     index = focusables.length - 1;
   }
+  console.log(index, focusables[index]);
   focusables[index].focus();
-};
+};*/
 
-//La modale se ferme en cliquant sur la croix v1 ou v2
+//La modale se ferme en cliquant sur la croix v1 ou v2 ou v3
 modal.querySelectorAll(".js-modal-close").forEach(function (btn) {
   btn.addEventListener("click", closeModal);
 });
@@ -272,12 +306,13 @@ window.addEventListener("keydown", function (e) {
     closeModal(e);
   }
   // Je peux tabuler dans la modale avec tab ou shift (en arrière)
-  if ((e.key === "Tab" || e.shiftKey) && isModalOpen) {
+  /*if ((e.key === "Tab" || e.shiftKey) && isModalOpen) {
     focusInModal(e);
-  }
+  }*/
 });
 
-const imageForm = document.querySelector("#image-form");
+//----------------- Upload photo dans le formulaire --------------//
+const imageForm = document.querySelector("#image");
 var uploadedImage = "";
 
 imageForm.addEventListener("change", function () {
@@ -290,4 +325,96 @@ imageForm.addEventListener("change", function () {
     document.querySelector(".display-image-none").style.display = "none";
   });
   reader.readAsDataURL(this.files[0]);
+});
+
+function removePhoto() {
+  imageForm.value = null;
+
+  document.querySelector("#display-image").style.backgroundImage = null;
+
+  document.querySelector(".display-image-none").style.display = "block";
+}
+
+//-------- Je crée les <options> de la balise <select> liste déroulante du formulaire ---------//
+//-------- en faisant appel aux catégories de l'API ------------//
+
+for (let i = 0; i < jsonCategories.length; i++) {
+  const selectForm = document.getElementById("category");
+
+  const categorie = jsonCategories[i];
+
+  const optionForm = document.createElement("option");
+  optionForm.innerText = categorie.name;
+  optionForm.value = categorie.id;
+
+  selectForm.appendChild(optionForm);
+}
+
+//---------- Je récupère les données du formulaire et les envoie à l'API via fetch ---------//
+
+const projectForm = document.querySelector(".modal-form");
+let messageErrFormModal = document.querySelector(".erreur-form-modal");
+
+projectForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(projectForm);
+  const image = formData.get("image");
+  const title = formData.get("title");
+  const category = formData.get("category");
+
+  var valid = true;
+  // Je parcours tous les inputs
+
+  // Je crée une instruction if pour contrôler la validité de tous les champs
+  // équivaut à valid = valid && input.reportValidity();
+  //valid &= input.reportValidity();
+
+  if (image.size == 0) {
+    messageErrFormModal.innerText = "Veuillez mettre une image";
+    messageErrFormModal.style.display = "block";
+    return 0;
+  }
+
+  if (image.size > 4000) {
+    messageErrFormModal.innerText =
+      "Veuillez mettre une image dont la taille est < à 4mo";
+    messageErrFormModal.style.display = "block";
+    removePhoto();
+    return 0;
+  }
+
+  console.log(title);
+  if (title.length == 0) {
+    valid = false;
+  }
+
+  // Si champs non valide, la validaton s'arrête et ne poursuit pas sur les autres champs
+  if (!valid) {
+    messageErrFormModal.style.display = "block";
+    return 0;
+  }
+
+  /*if (image ) {
+    alert("Affichez une image !");
+  } else if (title) {
+    alert("donnez un titre !");
+  } else {*/
+
+  // Je crée un nouveau projet en POST en envoyant les données par fetch
+  fetch(`${urlBase}/works`, {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${dataResponse.token}`,
+    },
+    body: formData,
+  }).then(async function (response) {
+    // GetWorks puis GenererWorks pour mettre à jour les données sur la modale et la gallery
+    jsonWorks = await getWorks();
+    genererWorks(jsonWorks);
+    // Si validation des données ok, je switch vers la v3 pour message de réussite
+    switchModal("modal-v3");
+  });
+  //}
 });

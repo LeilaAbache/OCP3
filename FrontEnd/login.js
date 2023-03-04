@@ -36,6 +36,8 @@ document
     // Je récupère les données eventuellement stockées dans le localStorage
     let dataResponse = window.localStorage.getItem("dataResponse");
 
+    let messageErreurLogin = document.querySelector(".erreur-login");
+
     // Si aucune donnée sauvegardée dans le localStorage
     if (dataResponse === null) {
       // J'envoie les données de connexion et demande à récupérer une reponse via fetch
@@ -60,7 +62,7 @@ document
         // Stockage des informations dans le localStorage
         window.localStorage.setItem("dataResponse", valeurData);
       } else {
-        alert("Email ou mot de passe incorrect");
+        messageErreurLogin.style.display = "block";
       }
     } else {
       //Si les données sont déjà sauvegardées, je les reconstruis en mémoire

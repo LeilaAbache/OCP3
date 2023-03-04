@@ -20,57 +20,67 @@
 		<button class="mode-edition-b2">Publier les changements</button>	
 	</div>
 
-<aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-lebelledby="titlemodal" style="display:none;">
-	<div class="modal-wrapper">
-		<div id="modal-v1" style="display:none;">
-			<div class="btn-x">
-				<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
-			</div>
-			<h3 id="titlemodal">Galerie Photos</h3>
-			<div class="gallery-modal" id="gallery-modal">
-				<!---Ajout des balises figures en JS-->
-			</div>
-			<div class="btn-modif-modal">
-				<button class="btn-ajout">Ajouter une photo</button>
-				<button class="btn-suppr">Supprimer la galerie</button>
-			</div>
-		</div>
-
-		<div id="modal-v2" style="display:none;">
-			<div class="btn-retour-x">
-				<div class="btn-retour">
-					<button class="js-retour-modal1" id="retour"><i class="fa-solid fa-arrow-left"></i></button>
-				</div>
+	<aside id="modal" class="modal" style="display:none;">
+		<!--aria-hidden="true" role="dialog" aria-lebelledby="titlemodal"-->
+		<div class="modal-wrapper">
+			<div id="modal-v1" style="display:none;">
 				<div class="btn-x">
 					<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
 				</div>
+				<h3 id="titlemodal">Galerie Photos</h3>
+				<div class="gallery-modal" id="gallery-modal">
+					<!---Ajout des balises figures en JS-->
+				</div>
+				<div class="btn-modif-modal">
+					<button class="btn-ajout">Ajouter une photo</button>
+					<button class="btn-suppr">Supprimer la galerie</button>
+				</div>
 			</div>
-			
-			<h3 id="titlemodal2">Ajout photo</h3>
-			<form class="modal-form" method="post" action="#">
-				<div id="display-image">
-					<div class="display-image-none">
-						<i class="fa-sharp fa-solid fa-image"></i>
-						<input type="file" name="image-form" id="image-form" alt="Ajouter photo" accept="image/jpg, image/png">
-						<label for="image-form">+ Ajout Photo</label>
-						<p>jpeg, png : 4mo max</p>
+
+			<div id="modal-v2" style="display:none;">
+				<div class="btn-retour-x">
+					<div class="btn-retour">
+						<button class="js-retour-modal1" id="retour"><i class="fa-solid fa-arrow-left"></i></button>
+					</div>
+					<div class="btn-x">
+						<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
 					</div>
 				</div>
-				<div class="text-form">
-					<label for="titre-form">Titre</label><br>
-					<input type="text" name="titre-form" id="titre-form"><br>
-					<label for="categorie-form">Catégorie</label><br>
-					<select name="categorie-form" id="categorie-form">
-						<option value="objets">Objets</option>
-						<option value="appartements">Appartements</option>
-						<option value="hotels-restaurants">Hotels & Restaurants</option>
-					</select>
+			
+				<h3 id="titlemodal2">Ajout photo</h3>
+				<form class="modal-form" method="post" action="">
+					<div id="display-image">
+						<div class="display-image-none">
+							<i class="fa-sharp fa-solid fa-image"></i>
+							<input type="file" name="image" id="image" alt="Ajouter photo" accept="image/jpg, image/png">
+							<label for="image">+ Ajout Photo</label>
+							<p>jpeg, png : 4mo max</p>
+						</div>
+					</div>
+					<div class="text-form">
+						<label for="title">Titre</label><br>
+						<input type="text" name="title" id="title" required><br>
+						<label for="category">Catégorie</label><br>
+							<select name="category" id="category" required>
+							<!---- Ajout des balises option en JS ----->
+							</select>
+				
+					</div>
+					<p class="erreur-form-modal">Veuillez remplir correctement tous les champs avant de valider</p>
+					<input class="btn-ajout" type="submit" value="Valider">
+				</form>
+			</div>
+
+			<div id="modal-v3" style="display:none;">
+				<div class="btn-x">
+					<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
 				</div>
-				<input type="submit" value="Valider">
-			</form>
+				<h3>Votre projet a été ajouté !</h3>
+			</div>
+
+
 		</div>
-	</div>
-</aside>
+	</aside>
 
 
 	<div id="main">
@@ -149,7 +159,6 @@
 	</div>
 
 	<script src="https://kit.fontawesome.com/5806bac3d3.js" crossorigin="anonymous"></script>
-	
 	<script type="module" src="index.js"></script>
 </body>
 			
