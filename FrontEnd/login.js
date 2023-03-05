@@ -1,6 +1,5 @@
-// -------------------------------------
+// --------------------------------------------------------------------------------------//
 // Je fais appel à une API de validation pour que les champs soient correctement renseignés
-// -------------------------------------
 
 // Je pointe le submit auquel je crée un évenement au click
 document
@@ -19,9 +18,8 @@ document
     }
   });
 
-// -------------------------------------
+// -------------------------------------------------------------------------//
 // Je fais un appel fetch pour récupérer le userId et token d'authentification
-// -------------------------------------
 
 const urlBase = "http://localhost:5678/api";
 const urlLogin = urlBase + "/users/login";
@@ -53,7 +51,7 @@ document
       });
       dataResponse = await response.json();
 
-      // Je crée une condition pour rediriger l'utilisateur sur page home en cas de connexion réussie sinon message d'erreur en alerte
+      // Je crée une condition pour rediriger l'utilisateur sur la page home en cas de connexion
       if ("token" in dataResponse) {
         document.location.href = "index.html";
 
@@ -62,10 +60,11 @@ document
         // Stockage des informations dans le localStorage
         window.localStorage.setItem("dataResponse", valeurData);
       } else {
-        messageErreurLogin.style.display = "block";
+        // Si erreur connexion, je renvoie un msg d'erreur
+        messageErreurLogin.style.visibility = "visible";
       }
     } else {
-      //Si les données sont déjà sauvegardées, je les reconstruis en mémoire
+      //Si les données sont déjà sauvegardées, je les reconstruis en mémoire, afin de rester connecté tant que pas déloguée
       dataResponse = JSON.parse(dataResponse);
     }
   });
@@ -73,7 +72,6 @@ document
 // je recupère les data et je les parse
 let dataResponse = window.localStorage.getItem("dataResponse");
 dataResponse = JSON.parse(dataResponse);
-
 // pour rediriger automatiquement vers la page index si logged
 if (dataResponse !== null && "token" in dataResponse) {
   document.location.href = "index.html";

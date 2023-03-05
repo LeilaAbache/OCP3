@@ -39,10 +39,11 @@ body {
 .login {
 	font-weight:900;
 }
+
 .erreur-login {
-	display:none;
+	visibility: hidden;
 	color: rgb(238, 89, 89);
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
