@@ -58,15 +58,16 @@
 					</div>
 					<div class="text-form">
 						<label for="title">Titre</label><br>
-						<input type="text" name="title" id="title" required><br>
+						<input type="text" name="title" id="title"><br>
 						<label for="category">Catégorie</label><br>
-							<select name="category" id="category" required>
+							<select name="category" id="category">
+								<option class="option-vide"></option>
 							<!---- Ajout des balises option en JS ----->
 							</select>
 				
 					</div>
 					<p class="erreur-form-modal">Veuillez remplir correctement tous les champs avant de valider</p>
-					<input class="btn-ajout" type="submit" value="Valider">
+					<input class="btn-submit-modal" type="submit" value="Valider">
 				</form>
 			</div>
 
@@ -143,7 +144,7 @@
 						<input type="email" name="email" id="email">
 						<label for="message">Message</label>
 						<textarea name="message" id="message" cols="30" rows="10"></textarea>
-						<input type="submit" value="Envoyer">
+						<input class="btn-contact" type="submit" value="Envoyer">
 					</form>
 			</section>
 		</main>
