@@ -21,17 +21,6 @@ const getWorks = async function () {
 // Récupère le tableau des works en les stockant dans la variable jsonWorks
 jsonWorks = await getWorks();
 
-// const getWorks = function() {
-// return fetch("http://localhost:5678/api/works")
-// .then((response) => response.json())
-// .then((jsonWorks) => {
-//  return jsonWorks
-// })
-// .catch(error => {
-// console.error("Une erreur est survenue...:", error)
-// });
-// };
-
 // Fonction pour récupérer le tableau Catégories via fetch
 const getCategories = async function () {
   try {
