@@ -164,7 +164,7 @@ const openModal = function (e) {
   for (let jsonWork of jsonWorks) {
     galleryModal.innerHTML += `<figure>
      <a href="#" class="delete-work" data-id="${jsonWork.id}"><i class="fa-solid fa-trash-can"></i></a>
-     <img src=${jsonWork.imageUrl}>
+     <img src="${jsonWork.imageUrl}" alt="${jsonWork.title}">
      <figcaption>Éditer</figcaption>
      </figure>`;
   }
