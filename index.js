@@ -7,6 +7,7 @@ const urlBase = "http://localhost:5678/api";
 // Variable qui stockera les travaux, une autre pour les catégories
 let jsonWorks = null;
 let jsonCategories = null;
+
 // Variable pour pointer la galerie html
 const galleryHtml = document.querySelector("#gallery");
 
@@ -43,7 +44,7 @@ const genererWorks = function (jsonWorks) {
   // Parcours le tableau des works, crée les balises html et affiche les éléments du tableau;
   for (let jsonWork of jsonWorks) {
     galleryHtml.innerHTML += `<figure>
-      <img src=${jsonWork.imageUrl}>
+      <img src=${jsonWork.imageUrl} alt=${jsonWork.title}>
       <figcaption>${jsonWork.title}</figcaption>
       </figure>`;
   }
