@@ -44,7 +44,7 @@ const genererWorks = function (jsonWorks) {
   // Parcours le tableau des works, crée les balises html et affiche les éléments du tableau;
   for (let jsonWork of jsonWorks) {
     galleryHtml.innerHTML += `<figure>
-      <img src=${jsonWork.imageUrl} alt=${jsonWork.title}>
+      <img src="${jsonWork.imageUrl}" alt="${jsonWork.title}">
       <figcaption>${jsonWork.title}</figcaption>
       </figure>`;
   }
